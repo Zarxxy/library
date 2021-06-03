@@ -1,0 +1,52 @@
+body {
+    background-color: rgb(201, 201, 201);
+    font-family: monospace;
+}
+
+input {
+    margin: 10px;
+}
+
+
+.headline {
+    text-align: center;        
+    font-size: 40px;
+    margin-bottom: 150px;
+    margin-top: 20px;
+}
+
+.lib {
+    align-self: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+}
+ 
+th, td {
+    border: 1px solid black;
+    padding: 5px;
+}
+
+.btnContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.newBookForm {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    width: 250px;
+    margin: auto;
+    border: 1px solid black;
+}
+
+.headlineForm {
+    text-align: center;        
+    font-size: 30px;
+    margin-top: 20px;
+}
