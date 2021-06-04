@@ -3,7 +3,7 @@ const displayBooks = document.querySelector(".lib")
 
 const btnNewBookForm = document.querySelector(".btnAdd")
 const FormNewBook = document.querySelector(".newBookForm")
-const btnConfirmNewBook = document.querySelector(".btnConfrim")
+const btnConfirmNewBook = document.querySelector(".btnConfirm")
 
 btnNewBookForm.addEventListener("click", () => {
     openTheForm()
@@ -22,8 +22,7 @@ function Book(title, author, pages, read){
     this.read = read
 }
 
-function addBookToLibrary(book) {
-    
+function addBookToLibrary(book) {    
     myLibrary.push(book);
 }
 
@@ -46,6 +45,21 @@ function openTheForm() {
 }
 
 function closeTheForm() {
+    let title = document.querySelector("#inputTitle").value
+    let author = document.querySelector("#inputAuthor").value
+    let pages = document.querySelector("#inputPages").value
+    let read = document.querySelector("#inputRead").value
+
+    const NewBook = new Book (title, author, pages, read)
+
+    addBookToLibrary(NewBook);
+    printLibrary()
+
+    document.querySelector("#inputTitle").value = ""
+    document.querySelector("#inputAuthor").value = ""
+    document.querySelector("#inputPages").value = ""
+    document.querySelector("#inputRead").value = ""
+
     FormNewBook.style.display = "none"
 }
 

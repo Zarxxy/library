@@ -5,8 +5,27 @@ body {
 
 input {
     margin: 10px;
+    background-color: rgb(201, 201, 201, 0.692);    
+    color: black;
+    display: inline-block;
+    border: 0.1em solid black; 
 }
 
+input:hover {
+    background-color: whitesmoke;
+}
+
+button {
+    font-size: 15px;
+    background-color: rgb(201, 201, 201, 0.692);    
+    color: black;
+    display: inline-block;
+    border: 0.1em solid black; 
+}
+
+button:hover {
+    background-color: whitesmoke;
+}
 
 .headline {
     text-align: center;        
@@ -31,17 +50,19 @@ th, td {
     display: flex;
     align-items: center;
     justify-content: center;
+    margin: 10px;
 }
+
 
 .newBookForm {
     display: none;
-    position: fixed;
     z-index: 1;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
     width: 250px;
-    margin: auto;
+    margin-left: auto;
+    margin-right: auto;
     border: 1px solid black;
 }
 
@@ -49,4 +70,8 @@ th, td {
     text-align: center;        
     font-size: 30px;
     margin-top: 20px;
+}
+
+.btnConfirm{
+    margin: 10px;
 }
