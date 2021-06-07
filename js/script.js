@@ -13,6 +13,8 @@ btnConfirmNewBook.addEventListener("click", () => {
     closeTheForm()
 })
 
+
+
 let myLibrary = [];
 
 function Book(title, author, pages, read){
@@ -27,17 +29,31 @@ function addBookToLibrary(book) {
 }
 
 function printLibrary(){
+    while(displayBooks.firstChild) displayBooks.removeChild(displayBooks.firstChild);
+    let i = 0
     myLibrary.forEach(book => {
         let row = document.createElement("tr");
+        row.setAttribute("data-index", i);
+        i++
 
         Object.values(book).forEach(text => {
             let cell = document.createElement("td");
-            let textNode =document.createTextNode(text);
+            let textNode = document.createTextNode(text);
             cell.appendChild(textNode)
             row.appendChild(cell)
+
         })
         displayBooks.appendChild(row);
+        let btnRemove = document.createElement("button");
+        btnRemove.classList.add("btnRemove")
+        btnRemove.innerHTML = "X";
+        row.appendChild(btnRemove)
     })
+    const btnRemove = document.querySelectorAll(".btnRemove")
+    btnRemove.forEach((button => 
+    button.addEventListener("click", () => {
+        removeBook();
+    })))
 }
 
 function openTheForm() {
@@ -61,6 +77,10 @@ function closeTheForm() {
     document.querySelector("#inputRead").value = ""
 
     FormNewBook.style.display = "none"
+}
+
+function removeBook(){
+    console.log("coc")
 }
 
 const theHobbit = new Book("The Hobbit", "J.R.R Tolkin", "295 pages", "yes");

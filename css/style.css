@@ -75,3 +75,10 @@ th, td {
 .btnConfirm{
     margin: 10px;
 }
+
+.btnRemove {
+    border: 1px solid black;
+    padding: 5px;
+    font-weight: bold;
+    border: none;
+}
