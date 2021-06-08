@@ -1,19 +1,17 @@
 
-const tableBooks = document.querySelector(".lib");
+const tableWithBooks = document.querySelector(".lib");
 
-const btnNewBookForm = document.querySelector(".btnAdd");
-const FormNewBook = document.querySelector(".newBookForm");
-const btnConfirmNewBook = document.querySelector(".btnConfirm");
+const btnToOpenNewBookForm = document.querySelector(".btnAdd");
+const FormForNewBook = document.querySelector(".newBookForm");
+const btnToConfirmNewBook = document.querySelector(".btnConfirm");
 
-btnNewBookForm.addEventListener("click", () => {
+btnToOpenNewBookForm.addEventListener("click", () => {
     openTheForm();
 })
 
-btnConfirmNewBook.addEventListener("click", () => {
+btnToConfirmNewBook.addEventListener("click", () => {
     closeTheForm();
 })
-
-
 
 let myLibrary = [];
 
@@ -29,7 +27,7 @@ function addBookToLibrary(book) {
 }
 
 function printLibrary(){
-    while(tableBooks.firstChild) tableBooks.removeChild(tableBooks.firstChild);
+    while(tableWithBooks.firstChild) tableWithBooks.removeChild(tableWithBooks.firstChild);
     let i = 0
     myLibrary.forEach(book => {
         let row = document.createElement("tr");
@@ -42,7 +40,7 @@ function printLibrary(){
             row.appendChild(cell);
 
         })
-        tableBooks.appendChild(row);
+        tableWithBooks.appendChild(row);
         let btnRemove = document.createElement("button");
         btnRemove.classList.add("btnRemove");
         btnRemove.innerHTML = "X";
@@ -59,7 +57,7 @@ function printLibrary(){
 }
 
 function openTheForm() {
-    FormNewBook.style.display = "flex";
+    FormForNewBook.style.display = "flex";
 }
 
 function closeTheForm() {
@@ -78,12 +76,12 @@ function closeTheForm() {
     document.querySelector("#inputPages").value = "";
     document.querySelector("#inputRead").value = "";
 
-    FormNewBook.style.display = "none";
+    FormForNewBook.style.display = "none";
 }
 
 function removeBook(i){
-    let remove = document.querySelector(`[data-index= "${i}"]`);
-    remove.remove();
+    let elementToRemove = document.querySelector(`[data-index= "${i}"]`);
+    elementToRemove.remove();
     myLibrary.splice(i, 1);
     printLibrary();
     console.log(myLibrary)
