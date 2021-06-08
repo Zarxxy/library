@@ -1,16 +1,16 @@
 
-const displayBooks = document.querySelector(".lib")
+const tableBooks = document.querySelector(".lib");
 
-const btnNewBookForm = document.querySelector(".btnAdd")
-const FormNewBook = document.querySelector(".newBookForm")
-const btnConfirmNewBook = document.querySelector(".btnConfirm")
+const btnNewBookForm = document.querySelector(".btnAdd");
+const FormNewBook = document.querySelector(".newBookForm");
+const btnConfirmNewBook = document.querySelector(".btnConfirm");
 
 btnNewBookForm.addEventListener("click", () => {
-    openTheForm()
+    openTheForm();
 })
 
 btnConfirmNewBook.addEventListener("click", () => {
-    closeTheForm()
+    closeTheForm();
 })
 
 
@@ -18,10 +18,10 @@ btnConfirmNewBook.addEventListener("click", () => {
 let myLibrary = [];
 
 function Book(title, author, pages, read){
-    this.title = title
-    this.author = author
-    this.pages = pages
-    this.read = read
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.read = read;
 }
 
 function addBookToLibrary(book) {    
@@ -29,58 +29,64 @@ function addBookToLibrary(book) {
 }
 
 function printLibrary(){
-    while(displayBooks.firstChild) displayBooks.removeChild(displayBooks.firstChild);
+    while(tableBooks.firstChild) tableBooks.removeChild(tableBooks.firstChild);
     let i = 0
     myLibrary.forEach(book => {
         let row = document.createElement("tr");
-        row.setAttribute("data-index", i);
-        i++
+        row.setAttribute("data-index", i);        
 
         Object.values(book).forEach(text => {
             let cell = document.createElement("td");
             let textNode = document.createTextNode(text);
-            cell.appendChild(textNode)
-            row.appendChild(cell)
+            cell.appendChild(textNode);
+            row.appendChild(cell);
 
         })
-        displayBooks.appendChild(row);
+        tableBooks.appendChild(row);
         let btnRemove = document.createElement("button");
-        btnRemove.classList.add("btnRemove")
+        btnRemove.classList.add("btnRemove");
         btnRemove.innerHTML = "X";
-        row.appendChild(btnRemove)
+        btnRemove.setAttribute("data-index", i)
+        row.appendChild(btnRemove);
+        i++
     })
     const btnRemove = document.querySelectorAll(".btnRemove")
     btnRemove.forEach((button => 
-    button.addEventListener("click", () => {
-        removeBook();
+    button.addEventListener("click", (e) => {
+        let i = e.target.getAttribute("data-index");
+        removeBook(i);
     })))
 }
 
 function openTheForm() {
-    FormNewBook.style.display = "flex"
+    FormNewBook.style.display = "flex";
 }
 
 function closeTheForm() {
-    let title = document.querySelector("#inputTitle").value
-    let author = document.querySelector("#inputAuthor").value
-    let pages = document.querySelector("#inputPages").value
-    let read = document.querySelector("#inputRead").value
+    let title = document.querySelector("#inputTitle").value;
+    let author = document.querySelector("#inputAuthor").value;
+    let pages = document.querySelector("#inputPages").value + " pages";
+    let read = document.querySelector("#inputRead").value;
 
     const NewBook = new Book (title, author, pages, read)
 
     addBookToLibrary(NewBook);
-    printLibrary()
+    printLibrary();
 
-    document.querySelector("#inputTitle").value = ""
-    document.querySelector("#inputAuthor").value = ""
-    document.querySelector("#inputPages").value = ""
-    document.querySelector("#inputRead").value = ""
+    document.querySelector("#inputTitle").value = "";
+    document.querySelector("#inputAuthor").value = "";
+    document.querySelector("#inputPages").value = "";
+    document.querySelector("#inputRead").value = "";
 
-    FormNewBook.style.display = "none"
+    FormNewBook.style.display = "none";
 }
 
-function removeBook(){
-    console.log("coc")
+function removeBook(i){
+    let remove = document.querySelector(`[data-index= "${i}"]`);
+    remove.remove();
+    myLibrary.splice(i, 1);
+    printLibrary();
+    console.log(myLibrary)
 }
 
 const theHobbit = new Book("The Hobbit", "J.R.R Tolkin", "295 pages", "yes");
