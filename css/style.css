@@ -40,11 +40,21 @@ button:hover {
     margin-right: auto;
     margin-top: 20px;
     font-size: 15px;
+    border-collapse: separate;
+    border-spacing: 0 10px;
+}
+
+table {
+    border-collapse: collapse;
 }
  
 th, td ,tr {
-    border: 1px solid black;
-    padding: 5px;
+    padding: 10px;
+    border-bottom: solid 2px black;
+}
+
+.spaceBetween {
+    margin: 15px;
 }
 
 .btnContainer {
@@ -78,7 +88,6 @@ th, td ,tr {
 }
 
 .btnRemove {
-    border: 1px solid black;
     padding: 5px;
     font-weight: bold;
     border: none;
