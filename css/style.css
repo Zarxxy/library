@@ -85,10 +85,16 @@ th, td ,tr {
 
 .btnConfirm{
     margin: 10px;
+    width: 100px;
 }
 
 .btnRemove {
-    padding: 5px;
-    font-weight: bold;
     border: none;
+    padding: 5px;
+    border-bottom: solid 2px black;
+    height: 39px;
+}
+
+.btnRemove:hover {
+    background-color: rgb(238, 70, 70);
 }

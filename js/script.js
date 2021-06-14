@@ -13,7 +13,9 @@ btnToOpenNewBookForm.addEventListener("click", () => {
 })
 
 btnToConfirmNewBook.addEventListener("click", () => {
-    closeTheForm();
+    createNewBook();
+    renderLibrary();
+    resetForm();
 })
 
 //Constructor for book object
@@ -29,7 +31,7 @@ function addBookToLibrary(book) {
     myLibrary.push(book);
 }
 
-//Creates and renders the table, with the books, from the myLibrary array
+//Creates and renders the table, with the data, from the myLibrary array
 function renderLibrary(){
     while(tableWithBooks.firstChild) tableWithBooks.removeChild(tableWithBooks.firstChild);
     let i = 0
@@ -65,24 +67,46 @@ function openTheForm() {
     FormForNewBook.style.display = "flex";
 }
 
-//Closes the form to add new books, creates a new book object from the user input and resets the form  
-function closeTheForm() {
+//Creates a new book object from the user input  
+function createNewBook() {
     let title = document.querySelector("#inputTitle").value;
     let author = document.querySelector("#inputAuthor").value;
     let pages = document.querySelector("#inputPages").value + " pages";
-    let read = document.querySelector("#inputRead").value;
+    let read = ""
+    if (document.getElementById("inputReadYes").checked){
+        read = "Yes"
+    }else {
+        read = "No"
+    }
 
-    const NewBook = new Book (title, author, pages, read)
+    if (checkDuplicate(title)) {
+        return
+    } else {
+        const NewBook = new Book (title, author, pages, read)
+        addBookToLibrary(NewBook);
+    }  
+}
 
-    addBookToLibrary(NewBook);
-    renderLibrary();
-
+//Closes and resets the new book form
+function resetForm(){
     document.querySelector("#inputTitle").value = "";
     document.querySelector("#inputAuthor").value = "";
     document.querySelector("#inputPages").value = "";
-    document.querySelector("#inputRead").value = "";
+    document.querySelector("#inputReadYes").checked = false;
+    document.querySelector("#inputReadNo").checked = false;
 
     FormForNewBook.style.display = "none";
+}
+
+//Checks the array for dupilcates
+function checkDuplicate(title) {
+    if (myLibrary.some(book => book.title === title)) {
+        resetForm()
+        alert("This book is already in your library!")
+        return true
+    } else {
+        return false
+    }    
 }
 
 //Removes a book from the Array and table

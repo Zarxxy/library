@@ -14,19 +14,25 @@
     <div class="btnContainer">
         <button type="button" class="btnAdd">Add book</button>
     </div>
-    <div class="newBookForm">
+    <form>
+      <div class="newBookForm">
         <h1 class="headlineForm">New Book</h1>
 
-        <input id="inputTitle" type="text" name="title" placeholder="Title" required>
+        <input id="inputTitle" type="text" name="title" placeholder="Title" required />
 
-        <input id="inputAuthor" type="text" name="author" placeholder="Author" required>
+        <input id="inputAuthor" type="text" name="author" placeholder="Author" required />
 
-        <input id="inputPages" type="text" name="pages" placeholder="Number of pages" required>
+        <input id="inputPages" type="text" name="pages" placeholder="Number of pages" required />
+        
+        <label>Already read?</label>
+        <input id="inputReadYes" type="radio" name="read" value="yes" />
+        <label for="yes">yes</label>
+        <input id="inputReadNo" type="radio" name="read" value="no" />
+        <label for="no">no</label>
 
-        <input id="inputRead" type="text" name="read" placeholder="Read?" required>
-
-        <button type="button" class="btnConfirm">Add book</button>
-    </div>
+        <button type="submit" class="btnConfirm">Confirm</button>
+      </div>
+    </form>
     <div class="libraryContainer">
         <table class="lib">
         </table>
