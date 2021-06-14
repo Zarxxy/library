@@ -13,9 +13,13 @@ btnToOpenNewBookForm.addEventListener("click", () => {
 })
 
 btnToConfirmNewBook.addEventListener("click", () => {
-    createNewBook();
-    renderLibrary();
-    resetForm();
+    if (validateForm() == true) {
+        createNewBook();
+        renderLibrary();
+        resetForm();
+    } else {
+        return;
+    }
 })
 
 //Constructor for book object
@@ -85,6 +89,24 @@ function createNewBook() {
         const NewBook = new Book (title, author, pages, read)
         addBookToLibrary(NewBook);
     }  
+}
+
+function validateForm() {
+    let title = document.querySelector("#inputTitle").value;
+    let author = document.querySelector("#inputAuthor").value;
+    let pages = document.querySelector("#inputPages").value;
+
+    if (title == "") {
+        document.querySelector("#inputTitle").style.color = "red";
+        return false
+    } else if (author == "") {
+        document.querySelector("#inputAuthor").style.color = "red";
+        return false
+    } else if (pages == "") {
+        document.querySelector("#inputPages").style.color = "red";
+        return false
+    }
+    return true
 }
 
 //Closes and resets the new book form
