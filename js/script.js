@@ -140,11 +140,15 @@ function removeBook(i){
     console.log(myLibrary)
 }
 
-const theHobbit = new Book("The Hobbit", "J.R.R Tolkin", "295 pages", "yes");
+const theHobbit = new Book("Frankenstein", "Marry Shelly", "304 pages", "yes");
 const mobyDick = new Book("Moby Dick", "Herman Melville", "814 pages", "no");
-const dracula = new Book("Dracula", "Bram Stoker", "592 pages", "yes")
+const dracula = new Book("Dracula", "Bram Stoker", "592 pages", "yes");
+const dasUrteil = new Book ("Das Urteil", "Franz Kafak", "13 pages", "yes");
+const dieVerwandlung = new Book ("Die Verwandlung", "Franz Kafak", "84 pages", "no");
 
 addBookToLibrary(theHobbit);
 addBookToLibrary(mobyDick);
 addBookToLibrary(dracula);
+addBookToLibrary(dasUrteil);
+addBookToLibrary(dieVerwandlung);
 renderLibrary();
