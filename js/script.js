@@ -146,5 +146,5 @@ function removeBook(i){
 function saveLibrary(){
     window.localStorage.clear();
     window.localStorage.setItem('savedLibrary', JSON.stringify(myLibrary));
-    testLib = JSON.parse(window.localStorage.getItem('savedLibrary'));
+    myLibrary = JSON.parse(window.localStorage.getItem('savedLibrary'));
 }
