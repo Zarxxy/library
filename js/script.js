@@ -148,5 +148,3 @@ function saveLibrary(){
     window.localStorage.setItem('savedLibrary', JSON.stringify(myLibrary));
     testLib = JSON.parse(window.localStorage.getItem('savedLibrary'));
 }
-
-renderLibrary();
