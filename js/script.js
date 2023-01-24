@@ -33,10 +33,13 @@ function Book(title, author, pages, read){
 //Adds new book objects into the myLibrary array
 function addBookToLibrary(book) {    
     myLibrary.push(book);
+
+    saveLibrary();
 }
 
 //Creates and renders the table, with the data, from the myLibrary array
 function renderLibrary(){
+    myLibrary = JSON.parse(window.localStorage.getItem('savedLibrary'));
     while(tableWithBooks.firstChild) tableWithBooks.removeChild(tableWithBooks.firstChild);
     let i = 0
     myLibrary.forEach(book => {
@@ -136,23 +139,14 @@ function removeBook(i){
     let elementToRemove = document.querySelector(`[data-index= "${i}"]`);
     elementToRemove.remove();
     myLibrary.splice(i, 1);
+    saveLibrary();
     renderLibrary();
-    console.log(myLibrary)
 }
 
-const frankenstein = new Book("Frankenstein", "Marry Shelly", "304 pages", "yes");
-const mobyDick = new Book("Moby Dick", "Herman Melville", "814 pages", "no");
-const dracula = new Book("Dracula", "Bram Stoker", "592 pages", "yes");
-const dasUrteil = new Book ("Das Urteil", "Franz Kafak", "13 pages", "yes");
-const dieVerwandlung = new Book ("Die Verwandlung", "Franz Kafak", "84 pages", "yes");
-const sandmann = new Book ("Sandmann", "E.T.A. Hoffmann", "30 pages", "yes");
-
-
-addBookToLibrary(frankenstein);
-addBookToLibrary(mobyDick);
-addBookToLibrary(dracula);
-addBookToLibrary(dasUrteil);
-addBookToLibrary(dieVerwandlung);
-addBookToLibrary(sandmann);
+function saveLibrary(){
+    window.localStorage.clear();
+    window.localStorage.setItem('savedLibrary', JSON.stringify(myLibrary));
+    testLib = JSON.parse(window.localStorage.getItem('savedLibrary'));
+}
 
 renderLibrary();
