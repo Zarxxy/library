@@ -1,5 +1,5 @@
 //Global variables
-let myLibrary = [];
+let myLibrary = JSON.parse(window.localStorage.getItem('savedLibrary'));
 const tableWithBooks = document.querySelector(".lib");
 
 //Button variables
@@ -33,7 +33,6 @@ function Book(title, author, pages, read){
 //Adds new book objects into the myLibrary array
 function addBookToLibrary(book) {    
     myLibrary.push(book);
-
     saveLibrary();
 }
 
@@ -148,3 +147,5 @@ function saveLibrary(){
     window.localStorage.setItem('savedLibrary', JSON.stringify(myLibrary));
     myLibrary = JSON.parse(window.localStorage.getItem('savedLibrary'));
 }
+
+renderLibrary();
