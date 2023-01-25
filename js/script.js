@@ -1,5 +1,12 @@
 //Global variables
-let myLibrary = JSON.parse(window.localStorage.getItem('savedLibrary'));
+let myLibrary = [];
+if (localStorage.getItem('savedLibrary') === null) {
+    myLibrary = [];
+
+}else {
+    myLibrary = JSON.parse(window.localStorage.getItem('savedLibrary'));
+}
+
 const tableWithBooks = document.querySelector(".lib");
 
 //Button variables
@@ -38,7 +45,6 @@ function addBookToLibrary(book) {
 
 //Creates and renders the table, with the data, from the myLibrary array
 function renderLibrary(){
-    myLibrary = JSON.parse(window.localStorage.getItem('savedLibrary'));
     while(tableWithBooks.firstChild) tableWithBooks.removeChild(tableWithBooks.firstChild);
     let i = 0
     myLibrary.forEach(book => {
@@ -100,12 +106,15 @@ function validateForm() {
 
     if (title == "") {
         document.querySelector("#inputTitle").style.color = "red";
+        alert("Please enter a title!")
         return false
     } else if (author == "") {
         document.querySelector("#inputAuthor").style.color = "red";
+        alert("Please enter an author!")
         return false
     } else if (pages == "") {
         document.querySelector("#inputPages").style.color = "red";
+        alert("Please enter the number of pages!")
         return false
     }
     return true
