@@ -59,11 +59,23 @@ function renderLibrary(){
 
         })
         tableWithBooks.appendChild(row);
+        let btnRead = document.createElement("button");
+        btnRead.classList.add("btnRead");
+        btnRead.innerHTML = "Read/Unread";
+        btnRead.setAttribute("data-index", i)
+        row.appendChild(btnRead);
+        btnRead.addEventListener("click", (e) => {
+            let i = e.target.getAttribute("data-index");
+            toggleReadStatus(i);
+        })
+
+        tableWithBooks.appendChild(row);
         let btnRemove = document.createElement("button");
         btnRemove.classList.add("btnRemove");
-        btnRemove.innerHTML = "X";
+        btnRemove.innerHTML = "Remove";
         btnRemove.setAttribute("data-index", i)
         row.appendChild(btnRemove);
+
         i++
     })
     const btnRemove = document.querySelectorAll(".btnRemove")
@@ -156,5 +168,11 @@ function saveLibrary(){
     window.localStorage.setItem('savedLibrary', JSON.stringify(myLibrary));
     myLibrary = JSON.parse(window.localStorage.getItem('savedLibrary'));
 }
+
+function toggleReadStatus(i) {
+    myLibrary[i].read = (myLibrary[i].read === "Yes") ? "No" : "Yes";
+    renderLibrary();
+    saveLibrary();
+  }
 
 renderLibrary();

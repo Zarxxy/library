@@ -98,3 +98,11 @@ th, td ,tr {
 .btnRemove:hover {
     background-color: rgb(238, 70, 70);
 }
+
+.btnRead {
+    border: none;
+    padding: 5px;
+    border-bottom: solid 2px black;
+    height: 39px;    
+    margin-left: 10px;
+}
